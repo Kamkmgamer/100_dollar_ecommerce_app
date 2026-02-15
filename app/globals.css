@@ -2,25 +2,742 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #2d2d2d;
+  --accent: #c9a86c;
+  --accent-hover: #b8945a;
+  --secondary: #8b7355;
+  --border: #e5e5e5;
+  --muted: #888888;
+  --premium-bg: #faf9f7;
+  --premium-border: #d4c4b0;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Lora", "Georgia", "Times New Roman", serif;
+  font-size: 17px;
+  line-height: 1.8;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Playfair Display", "Georgia", "Times New Roman", serif;
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 0 0 1.5rem 0;
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  font-size: 2.75rem;
+}
+
+h2 {
+  font-size: 2.25rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+.premium-site-header {
+  background: linear-gradient(180deg, #ffffff 0%, #faf9f7 100%);
+  border-bottom: 1px solid var(--premium-border);
+  padding: 1.25rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.premium-header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.premium-site-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.75rem;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+.premium-site-title a {
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+.premium-site-title a:hover {
+  color: var(--accent);
+}
+
+.premium-nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.premium-nav a {
+  color: var(--foreground);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.premium-nav a:hover {
+  color: var(--accent);
+}
+
+.premium-main-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  min-height: 60vh;
+}
+
+.premium-footer {
+  background: linear-gradient(180deg, #faf9f7 0%, #f5f3f0 100%);
+  border-top: 2px solid var(--premium-border);
+  padding: 3rem 2rem;
+  margin-top: 4rem;
+}
+
+.premium-footer-content {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.premium-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .premium-footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .premium-footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.premium-footer-col h5 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 1rem;
+  color: var(--foreground);
+}
+
+.premium-footer-col p,
+.premium-footer-col a {
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 2;
+}
+
+.premium-footer-col a:hover {
+  color: var(--accent);
+}
+
+.premium-footer-divider {
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.premium-copyright-section {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.premium-copyright-section p {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0.5rem 0;
+}
+
+.premium-theme-credit {
+  font-size: 0.9rem !important;
+  color: var(--secondary) !important;
+  font-style: italic;
+  margin-top: 1rem !important;
+}
+
+.premium-theme-credit a {
+  color: var(--accent) !important;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.premium-button {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  transition: all 0.3s ease;
+}
+
+.premium-button:hover {
+  background: var(--accent-hover);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(201, 168, 108, 0.3);
+}
+
+.premium-button-secondary {
+  background: transparent;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+}
+
+.premium-button-secondary:hover {
+  background: var(--accent);
+  color: white;
+}
+
+.premium-product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 1200px) {
+  .premium-product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .premium-product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .premium-product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.premium-product-card {
+  background: white;
+  border: 1px solid var(--border);
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.premium-product-card:hover {
+  border-color: var(--premium-border);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+}
+
+.premium-product-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.premium-product-card:hover img {
+  transform: scale(1.05);
+}
+
+.premium-product-card-content {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.premium-product-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.premium-product-card h3 a {
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+.premium-product-card h3 a:hover {
+  color: var(--accent);
+}
+
+.premium-product-card .premium-price {
+  font-size: 1.25rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.premium-product-category {
+  display: inline-block;
+  background: var(--premium-bg);
+  color: var(--muted);
+  font-size: 0.7rem;
+  padding: 0.35rem 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.75rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.premium-single-product {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .premium-single-product {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.premium-single-product img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+}
+
+.premium-product-meta {
+  margin-bottom: 2rem;
+}
+
+.premium-product-price {
+  font-size: 2rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.premium-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.premium-back-link:hover {
+  color: var(--accent);
+}
+
+.premium-quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.premium-quantity-selector button {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  background: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.premium-quantity-selector button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.premium-quantity-selector span {
+  font-size: 1.1rem;
+  min-width: 40px;
+  text-align: center;
+}
+
+.premium-cart-toggle {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.cart-icon {
+  font-size: 1.5rem;
+}
+
+.cart-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--accent);
+  color: white;
+  font-size: 0.7rem;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.premium-cart-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 320px;
+  background: white;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  padding: 1.5rem;
+  z-index: 1000;
+}
+
+.premium-cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.premium-cart-header h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.cart-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--muted);
+}
+
+.premium-cart-empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 2rem 0;
+}
+
+.premium-cart-items {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.premium-cart-item {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.premium-cart-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.premium-cart-item-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.premium-cart-item-name {
+  font-size: 0.85rem;
+}
+
+.premium-cart-item-qty {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.premium-cart-total {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  font-weight: 500;
+  border-top: 2px solid var(--border);
+  margin-top: 0.5rem;
+}
+
+.premium-cart-view,
+.premium-cart-checkout {
+  display: block;
+  text-align: center;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.premium-cart-view {
+  background: white;
+  border: 1px solid var(--border);
+  color: var(--foreground);
+}
+
+.premium-cart-view:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.premium-cart-checkout {
+  background: var(--accent);
+  color: white;
+}
+
+.premium-cart-checkout:hover {
+  background: var(--accent-hover);
+  color: white;
+}
+
+.premium-cart-page {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.premium-cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+
+.premium-cart-table th {
+  text-align: left;
+  padding: 1rem;
+  border-bottom: 2px solid var(--border);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.premium-cart-table td {
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.premium-cart-table img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+.premium-cart-product-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.premium-cart-product-name {
+  font-weight: 500;
+}
+
+.premium-cart-remove {
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-decoration: underline;
+}
+
+.premium-cart-remove:hover {
+  color: #c00;
+}
+
+.premium-cart-summary {
+  background: var(--premium-bg);
+  padding: 2rem;
+  text-align: right;
+}
+
+.premium-cart-summary-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.premium-cart-summary-total {
+  font-size: 1.25rem;
+  font-weight: 500;
+  border-top: 2px solid var(--border);
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.premium-checkout-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.premium-form-group {
+  margin-bottom: 1.5rem;
+}
+
+.premium-form-group label {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.premium-form-group input,
+.premium-form-group textarea,
+.premium-form-group select {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--border);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.2s ease;
+}
+
+.premium-form-group input:focus,
+.premium-form-group textarea:focus,
+.premium-form-group select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.premium-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .premium-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.premium-order-summary {
+  background: var(--premium-bg);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.premium-order-summary h3 {
+  margin-bottom: 1.5rem;
+}
+
+.premium-order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.premium-order-total {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.loading-message {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.slow-image-container {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+}
+
+.slow-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-section {
+  text-align: center;
+  padding: 3rem 0;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero-section p {
+  max-width: 600px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.section-title h2 {
+  margin: 0;
+}
+
+.section-title a {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
