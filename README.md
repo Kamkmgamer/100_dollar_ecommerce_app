@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Artisan Collective - $100 E-commerce App
+
+A premium-themed e-commerce website simulation representing a $100 budget tier. This project demonstrates what a small business or freelancer might get with a premium WordPress theme setup.
+
+## Features
+
+- **Product Catalog** - 20 handcrafted products with categories and prices
+- **Shopping Cart** - Add/remove items, update quantities, persistent cart
+- **Checkout Flow** - Shipping form and order confirmation
+- **Premium Theme Styling** - Elegant serif fonts, gold accent colors
+- **Heavy Footer Branding** - Multiple copyright notices simulating premium theme requirements
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (App Router)
+- **Styling**: Tailwind CSS + Custom CSS
+- **State**: Server-side cart with cookies
+- **Performance**: Simulated slow loading (15s page delay, 4s images)
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# Install dependencies
+pnpm install
+
+# Run development server
 pnpm dev
-# or
-bun dev
+
+# Build for production
+pnpm build
+
+# Start production server
+pnpm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+├── app/
+│   ├── api/cart/          # Cart API routes
+│   ├── cart/              # Shopping cart page
+│   ├── checkout/          # Checkout flow
+│   ├── product/[id]/      # Product detail pages
+│   ├── globals.css        # Premium theme styles
+│   ├── layout.tsx         # Site layout with footer
+│   └── page.tsx           # Homepage
+├── components/
+│   ├── Cart.tsx           # Cart dropdown component
+│   └── SlowImage.tsx      # Delayed image loader
+├── lib/
+│   ├── cart.ts            # Cart server actions
+│   ├── delay.ts           # Performance simulation
+│   └── products.ts        # Product catalog data
+└── SPEC.md                # Project specification
+```
 
-## Learn More
+## Routes
 
-To learn more about Next.js, take a look at the following resources:
+| Route | Description |
+|-------|-------------|
+| `/` | Product catalog homepage |
+| `/product/[id]` | Individual product details |
+| `/cart` | Shopping cart |
+| `/checkout` | Checkout form |
+| `/checkout/success` | Order confirmation |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Budget Breakdown
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Item | Cost |
+|------|------|
+| Domain | ~$12/year |
+| WordPress Hosting | ~$48/year |
+| Premium Theme | ~$40 |
+| **Total First Year** | ~$100 |
+| **Monthly Cost** | ~$5/mo |
 
-## Deploy on Vercel
+## Performance Characteristics
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This app simulates typical WordPress performance with a premium theme:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Page Load**: 15 second delay (simulating PHP rendering)
+- **Image Loading**: 4 second delay per image
+- **Expected TTFB**: 2-4 seconds
+
+## Target Audience
+
+- Small businesses needing quick setup
+- Freelancers selling services/products
+- Businesses prioritizing convenience over performance
+- Those okay with theme branding requirements
+
+## License
+
+This is a demo project. The "premium theme" branding is simulated for educational purposes.
+
+---
+
+Built with [Next.js](https://nextjs.org) | Deploy on [Vercel](https://vercel.com)
