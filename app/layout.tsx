@@ -6,6 +6,9 @@ import Cart from "@/components/Cart";
 export const metadata: Metadata = {
   title: "Artisan Collective | Premium Handcrafted Goods",
   description: "Curated collection of handcrafted products from artisans worldwide. Quality goods for discerning tastes.",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
